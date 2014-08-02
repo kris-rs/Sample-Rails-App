@@ -4,16 +4,21 @@ describe "StaticPages" do
 
   let(:base_title) {"Ruby on Rails Tutorial Sample App"}
 
+  # Set the subject to page
+  # This lets us replace expect(page).to have_content with
+  # it {should have_content()} because we have already
+  # specified what the subject is
+  # 
+  # I have left the other tests the way they are for comparison._
+  subject {page}
   describe "Home page" do
-    it "should have the content 'Sample App'" do
-      visit root_path
-      expect(page).to have_content('Sample App')
-    end
+    # This DRY-es out the RSpec tests ( Observe how the
+    # other paths visit some path repetitevely and this one
+    # does not)
+    before {visit root_path}
+    it {should have_content('Sample App')}
+    it {should have_title('Home')}
 
-    it "should have the right title" do
-      visit root_path
-      expect(page).to have_title("Home")
-    end
   end
   
 

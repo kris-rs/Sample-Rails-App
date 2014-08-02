@@ -1,10 +1,12 @@
 SampleApp::Application.routes.draw do
+  get "users/new"
   # Routing home to /
   root 'static_pages#home'
 
   # This was get 'static_pages/help' before
   # This way we do not need to type url/static_pages/help
   # We can directly type url/help
+  match '/signup', to: 'users#new', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
