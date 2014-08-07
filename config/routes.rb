@@ -3,8 +3,8 @@ SampleApp::Application.routes.draw do
   # Routing home to /
   root 'static_pages#home'
 
-  # This was get 'static_pages/help' before
-  # This way we do not need to type url/static_pages/help
+  # This was get 'static_pages/help' before.
+  # Because of the modification we do not need to type url/static_pages/help
   # We can directly type url/help
   match '/signup', to: 'users#new', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
