@@ -1,7 +1,17 @@
 @import "bootstrap";
 
-/* Variables */
+/* Variables, Mixins etc */
 $lightGray: #999;
+
+// This is part of the debug prettification
+// This mixin actually packs a couple of css rules together
+// like a function and enables their usage later on by calling
+// the mixin (see miscellaneous below)
+@mixin box_sizing{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
 /* Universal */ 
 	
@@ -105,3 +115,76 @@ footer {
 	
 }
 
+// Part of debug prettification
+// Note the @incldue box_sizing
+.debug_dump{
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing; 
+}
+
+/* Sidebar */
+aside {
+	section {
+		padding: 10px 0px;
+		border-top: 1px solid $grayLighter;
+		&:first-child {
+			border: 0;
+			padding-top: 0; 
+		}
+		span {
+			display: block;
+			margin-bottom: 3px;
+			line-height: 1;
+		}
+		h1 {
+			font-size: 1.4em;
+			text-align: left;
+			letter-spacing: -1px;
+			margin-bottom: 3px;
+			margin-top: 0px; 
+		}
+	}
+}
+
+.gravatar {
+	float: left;
+	margin-right: 10px;
+}
+
+/* Forms */ 
+input, textarea, select, .uneditable-input{
+	border: 1px solid #bbb;
+	width: 100%;
+	margin-bottom: 15px;
+	@include box_sizing;
+	padding-top: 10px; 
+}
+
+input {
+	height: auto !important; 
+}
+
+.form-class {
+	background: #ddd; 
+	padding: 15px 15px 70px 15px;
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;  
+	-webkit-box-shadow: 10px 3px #aaa; 
+	box-shadow: 0px 0px 10px 3px #aaa; 
+}
+
+#error_explanation {
+	color: #f00;
+	ul{
+		list-style: none;
+		margin: 0 0 18px 0;
+	}
+}
+
+.filled_with_errors {
+	@extend .control-group;
+	@extend .error;	
+}
